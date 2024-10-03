@@ -142,20 +142,20 @@ namespace Bankrablás
                 return;
             }
 
-            
             SheriffLepes();
+            
 
-            if (banditaLep)
+            for (int i = 0; i < Bandita.banditaLocations.Count; i++)
             {
-                for (int i = 0; i < Bandita.banditaLocations.Count; i++)
-                    BanditaLepes(i);
+                if (banditaLep)
+                    BanditaLepes(i,false);
+                else
+                    BanditaLepes(i,true);
             }
             banditaLep = !banditaLep;
 
-            
 
             System.Threading.Thread.Sleep(100);
-            Console.Clear();
             Futtat();
         }
 
@@ -244,6 +244,7 @@ namespace Bankrablás
                             {
                                 Sheriff.varoshazaLocation = (x, y);
                                 jatekVege = true;
+                                return;
                             }
                             else
                                 Sheriff.varoshazaLocation = (x, y);
@@ -317,7 +318,7 @@ namespace Bankrablás
 
         #region BanditaLepesek
 
-        private void BanditaLepes(int index)
+        private void BanditaLepes(int index, bool tamad)
         {
             var (banditaX, banditaY) = Bandita.banditaLocations[index];
             Bandita bandit = (Bandita)varos[banditaX, banditaY];
@@ -327,28 +328,31 @@ namespace Bankrablás
                     {
                         if (varos[banditaX + i, banditaY + j] is Sheriff)
                         {
+                            Kirajzol();
                             bandit.Tamad(ref varos, i, j, index);
                             return;
                         }
-                        if (varos[banditaX + i, banditaY + j] is Arany){
+                        if (varos[banditaX + i, banditaY + j] is Arany && !tamad){
                             bandit.AranyFelszed(ref varos, i, j, index);
                             return;
                         }
                     }
                 }
-            bandit.DefaultLepes(ref varos, index, defaultIranyok);
+            if(!tamad)
+                bandit.DefaultLepes(ref varos, index, defaultIranyok);
         }
         
         #endregion
 
         #region Kirajzolas
 
-        //elemek és a hozzá rendelt színek tömbjei
+        
         string[] elemek = new string[] { "S","B","A","W","X","V"," "};
         ConsoleColor[] elemSzinek = new ConsoleColor[] { ConsoleColor.Blue,ConsoleColor.DarkRed,ConsoleColor.DarkYellow,ConsoleColor.Magenta,ConsoleColor.DarkGray,ConsoleColor.Green,ConsoleColor.Black};
 
         private void Kirajzol()
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             for (int i = 0; i < varos.GetLength(0); i++)

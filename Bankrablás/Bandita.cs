@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Bankrablás
 {
@@ -25,7 +26,16 @@ namespace Bankrablás
         {
             Random r = new Random();
             (int, int) sheriffLocation = Sheriff.sheriffLocation;
-            Sheriff.hp -= r.Next(4, 16);
+            int dmg = r.Next(4, 16);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"\tSheriff hp: {Sheriff.hp}");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($" ( -{dmg} )");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(Sheriff.hp - dmg <= 0 ? " --> 0" : $" --> {Sheriff.hp - dmg}");
+            Console.WriteLine();
+            System.Threading.Thread.Sleep(2000);
+            Sheriff.hp -= dmg;
             if (Sheriff.hp <= 0)
                 Varos.jatekVege = true;    
         }

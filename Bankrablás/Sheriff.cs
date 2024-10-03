@@ -118,10 +118,18 @@ namespace Bankrablás
             bool forceBack = false;
             do
             {
+                int jarhatatlan = 0;
+                for (int i = -1; i <= 1; i++)
+                    for (int j = -1; j <= 1; j++)
+                        if(i != 0 || j != 0)
+                            if (!Varos.validmezoCheck(sheriffX + i, sheriffY + j) || followMezok[cel][sheriffX + i][sheriffY+j] || !(varos[sheriffX + i,sheriffY + j] is Fold))
+                                jarhatatlan++;
+                if (jarhatatlan == 8)
+                    followMezok[cel].ForEach(list => list.ForEach(elem => elem = false));
                 index = tavolsagok.IndexOf(tavolsagok.Min());
                 ujsheriffX = sheriffX + Varos.defaultIranyok[index].Item1;
                 ujsheriffY = sheriffY + Varos.defaultIranyok[index].Item2;
-                tavolsagok.RemoveAt(index);
+                tavolsagok[index] = 1000;
                 if ((tavolsagok.Count() * 1000) == tavolsagok.Sum())
                     forceBack = true;
             }
@@ -188,7 +196,8 @@ namespace Bankrablás
         private void Harcol(ref VarosElem[,] varos, int x, int y)
         {
             int bx = sheriffLocation.Item1 + x; int by = sheriffLocation.Item2 + y;
-            Bandita b = (Bandita)varos[bx,by]; 
+            Bandita b = (Bandita)varos[bx,by];
+            HarcolasKirajzolas(b);
             b.hp -= damage;
             if (b.hp <= 0)
             {
@@ -199,6 +208,18 @@ namespace Bankrablás
             }
         }
 
+        private void HarcolasKirajzolas(Bandita b)
+        {
+            
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write($"\tBandita hp: {b.hp}");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write($" ( -{damage} )");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(b.hp - damage <= 0 ? " --> 0" : $" --> {b.hp-damage}");
+            Console.WriteLine();
+            System.Threading.Thread.Sleep(2000);
+        }
 
         private void Lep(ref VarosElem[,] varos, int ujx, int ujy)
         {
