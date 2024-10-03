@@ -16,9 +16,20 @@ namespace Bankrablás
         public static (int, int) sheriffLocation;
         public static List<(int, int)> whiskyLocations;
         public static (int, int) varoshazaLocation;
+
+        public Sheriff() 
+        {
+            hp = 100;
+            damage = r.Next(20,36);
+            arany = 0;
+            varoshazaLocation = (-1, -1);
+            whiskyLocations = new List<(int, int)>();
+            
+        }
+
+        #region Valtozok
         Dictionary<(int, int), List<List<bool>>> followMezok = new Dictionary<(int, int), List<List<bool>>>();
         public Fold newFold = new Fold();
-
         #region SheriffLepesTombok
 
         //közelben lévő felfedezetlen területekhez és értük teendő lépések indexei
@@ -34,49 +45,17 @@ namespace Bankrablás
         #endregion
         Random r = new Random();
 
-        public Sheriff() 
-        {
-            hp = 100;
-            damage = r.Next(20,36);
-            arany = 0;
-            varoshazaLocation = (-1, -1);
-            whiskyLocations = new List<(int, int)>();
-            
-        }
+        #endregion
 
+        #region Arany
         internal void AranyBegyujt(ref VarosElem[,] varos, int aranyEltolX, int aranyEltolY)
         {
             arany++;
             Lep(ref varos,sheriffLocation.Item1+aranyEltolX,sheriffLocation.Item2+aranyEltolY);
         }
+        #endregion
 
-        internal void WhiskyFelszed(ref VarosElem[,] varos, int eltolX, int eltolY)
-        {
-            hp += Whisky.heal;
-            Lep(ref varos, sheriffLocation.Item1 + eltolX, sheriffLocation.Item2 + eltolY);
-            whiskyLocations.Remove((sheriffLocation.Item1, sheriffLocation.Item2));
-            Varos.ElemGen(1, new Whisky());
-        }
-
-        internal void Default(ref VarosElem[,] varos, ref bool[,]felfedezettMezok)
-        {
-            var (sheriffX, sheriffY) = sheriffLocation;
-            for (int i = 0; i < sheriffUjmezoCheckIranyok.Count(); i++)
-            {
-                int tempX = sheriffX + sheriffUjmezoCheckIranyok[i].Item1;
-                int tempY = sheriffY + sheriffUjmezoCheckIranyok[i].Item2;
-                (int, int) ujHely = (sheriffX + sheriffLepesIranyok[i].Item1, sheriffY + sheriffLepesIranyok[i].Item2);
-                if (Varos.validmezoCheck(tempX, tempY) && Varos.validmezoCheck(ujHely.Item1, ujHely.Item2))
-                    if(!felfedezettMezok[tempX, tempY] && (varos[ujHely.Item1, ujHely.Item2] is Fold)){
-                        followMezok.Clear();
-                        Lep(ref varos, ujHely.Item1, ujHely.Item2);
-                        return;
-                    }
-            }
-            SheriffKovetoLepes(ref varos, sheriffX, sheriffY, Varos.SheriffCel());
-        }
-
-        
+        #region KovetoLepes
         internal void SheriffKovetoLepes(ref VarosElem[,] varos, int sheriffX, int sheriffY, (int, int) cel)
         {
             if (cel == (-1, -1))
@@ -84,7 +63,8 @@ namespace Bankrablás
                 Varos.palyaFelfedezve = true;
                 return;
             }
-            else{
+            else
+            {
                 if (!followMezok.ContainsKey(cel))
                 {
                     List<List<bool>> temp = new List<List<bool>>();
@@ -97,11 +77,11 @@ namespace Bankrablás
                     }
                     followMezok.Add(cel, temp);
                 }
-              
+
 
             }
             List<double> tavolsagok = new List<double>();
-            
+
             for (int i = -1; i <= 1; i++)
                 for (int j = -1; j <= 1; j++)
                     if (i != 0 || j != 0)
@@ -121,8 +101,8 @@ namespace Bankrablás
                 int jarhatatlan = 0;
                 for (int i = -1; i <= 1; i++)
                     for (int j = -1; j <= 1; j++)
-                        if(i != 0 || j != 0)
-                            if (!Varos.validmezoCheck(sheriffX + i, sheriffY + j) || followMezok[cel][sheriffX + i][sheriffY+j] || !(varos[sheriffX + i,sheriffY + j] is Fold))
+                        if (i != 0 || j != 0)
+                            if (!Varos.validmezoCheck(sheriffX + i, sheriffY + j) || followMezok[cel][sheriffX + i][sheriffY + j] || !(varos[sheriffX + i, sheriffY + j] is Fold))
                                 jarhatatlan++;
                 if (jarhatatlan == 8)
                     followMezok[cel].ForEach(list => list.ForEach(elem => elem = false));
@@ -133,12 +113,43 @@ namespace Bankrablás
                 if ((tavolsagok.Count() * 1000) == tavolsagok.Sum())
                     forceBack = true;
             }
-            while (((followMezok[cel][ujsheriffX][ujsheriffY]) && !forceBack) || !(varos[ujsheriffX,ujsheriffY] is Fold));
+            while (((followMezok[cel][ujsheriffX][ujsheriffY]) && !forceBack) || !(varos[ujsheriffX, ujsheriffY] is Fold));
             followMezok[cel][ujsheriffX][ujsheriffY] = true;
             Lep(ref varos, ujsheriffX, ujsheriffY);
         }
 
-        
+        #endregion
+
+        #region Default
+
+        internal void Default(ref VarosElem[,] varos, ref bool[,] felfedezettMezok)
+        {
+            var (sheriffX, sheriffY) = sheriffLocation;
+            for (int i = 0; i < sheriffUjmezoCheckIranyok.Count(); i++)
+            {
+                int tempX = sheriffX + sheriffUjmezoCheckIranyok[i].Item1;
+                int tempY = sheriffY + sheriffUjmezoCheckIranyok[i].Item2;
+                (int, int) ujHely = (sheriffX + sheriffLepesIranyok[i].Item1, sheriffY + sheriffLepesIranyok[i].Item2);
+                if (Varos.validmezoCheck(tempX, tempY) && Varos.validmezoCheck(ujHely.Item1, ujHely.Item2))
+                    if (!felfedezettMezok[tempX, tempY] && (varos[ujHely.Item1, ujHely.Item2] is Fold))
+                    {
+                        followMezok.Clear();
+                        Lep(ref varos, ujHely.Item1, ujHely.Item2);
+                        return;
+                    }
+            }
+            SheriffKovetoLepes(ref varos, sheriffX, sheriffY, Varos.SheriffCel());
+        }
+        #endregion
+
+        #region WhiskyLekezeles
+        internal void WhiskyFelszed(ref VarosElem[,] varos, int eltolX, int eltolY)
+        {
+            hp += Whisky.heal;
+            Lep(ref varos, sheriffLocation.Item1 + eltolX, sheriffLocation.Item2 + eltolY);
+            whiskyLocations.Remove((sheriffLocation.Item1, sheriffLocation.Item2));
+            Varos.ElemGen(1, new Whisky());
+        }
 
         public void WhiskyKeres(ref VarosElem[,] varos)
         {
@@ -147,12 +158,12 @@ namespace Bankrablás
                 for (int j = -1; j <= 1; j++)
                     if (Varos.validmezoCheck(sheriffX + i, sheriffY + j) && varos[sheriffX + i, sheriffY + j] is Whisky)
                     {
-                        WhiskyFelszed(ref varos,i,j);
+                        WhiskyFelszed(ref varos, i, j);
                         return;
                     }
             if (whiskyLocations.Count == 1)
                 SheriffKovetoLepes(ref varos, sheriffX, sheriffY, whiskyLocations[0]);
-            else 
+            else
             {
                 List<double> tavolsagok = new List<double>();
                 for (int i = 0; i < whiskyLocations.Count; i++)
@@ -162,13 +173,15 @@ namespace Bankrablás
                 SheriffKovetoLepes(ref varos, sheriffX, sheriffY, whiskyLocations[index]);
             }
         }
+        #endregion
 
-        internal void BanditaLekezel(ref VarosElem[,] varos, int x,int y)
+        #region TamadasFuggvenyek
+        internal void BanditaLekezel(ref VarosElem[,] varos, int x, int y)
         {
             int bcount = 0;
-            for (int i = -1; i<= 1;i++)
-                for (int j = -1; j<= 1;j++)
-                    if(Varos.validmezoCheck(sheriffLocation.Item1+i,sheriffLocation.Item2+j) 
+            for (int i = -1; i <= 1; i++)
+                for (int j = -1; j <= 1; j++)
+                    if (Varos.validmezoCheck(sheriffLocation.Item1 + i, sheriffLocation.Item2 + j)
                         && varos[sheriffLocation.Item1 + i, sheriffLocation.Item2 + j] is Bandita)
                         bcount++;
             if (bcount > 1)
@@ -182,7 +195,6 @@ namespace Bankrablás
             }
 
         }
-
 
         private void Menekul(ref VarosElem[,] varos, int x, int y)
         {
@@ -218,9 +230,12 @@ namespace Bankrablás
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(b.hp - damage <= 0 ? " --> 0" : $" --> {b.hp-damage}");
             Console.WriteLine();
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1500);
         }
 
+        #endregion
+
+        #region BasicFuggvenyek
         private void Lep(ref VarosElem[,] varos, int ujx, int ujy)
         {
             var (sheriffX, sheriffY) = sheriffLocation;
@@ -235,6 +250,6 @@ namespace Bankrablás
         {
             return "S";
         }
-
+        #endregion
     }
 }

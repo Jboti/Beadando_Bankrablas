@@ -12,6 +12,7 @@ namespace Bankrablás
 {
     internal class Varos : VarosElem
     {
+
         static VarosElem[,] varos;
         static bool[,] felfedezettMezok;
         public static bool palyaFelfedezve;
@@ -21,6 +22,7 @@ namespace Bankrablás
             VarosGeneralas(25, 100);
         }
 
+        #region Valtozok
         Random r = new Random();
         public static (int, int)[] defaultIranyok = new (int, int)[] { (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1) };
         public static bool jatekVege;
@@ -28,6 +30,7 @@ namespace Bankrablás
         private int futSzam = 0;
         private Fold newFold = new Fold();
         private Barikad newBarikad = new Barikad();
+        #endregion
 
         #region palyaGeneralas
 
@@ -353,7 +356,7 @@ namespace Bankrablás
         private void Kirajzol()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             for (int i = 0; i < varos.GetLength(0); i++)
             {
@@ -367,16 +370,19 @@ namespace Bankrablás
                     //Console.Write($" {elem} ");
 
                     if (felfedezettMezok[i, j])
-                    {
+                    { 
+                        Console.ForegroundColor = ConsoleColor.White;
                         string elem = varos[i, j].ToString();
                         Console.BackgroundColor = elemSzinek[Array.IndexOf(elemek, elem)];
                         Console.Write($" {elem} ");
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.Write($" # ");
                     }
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                 }
                 Console.BackgroundColor = ConsoleColor.Black;
