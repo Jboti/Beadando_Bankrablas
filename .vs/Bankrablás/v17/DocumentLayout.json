@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|c:\\users\\user\\downloads\\bankrabl\u00E1s\\bankrabl\u00E1s\\sheriff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|solutionrelative:bankrabl\u00E1s\\sheriff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\bankrabl\u00E1s\\varos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|solutionrelative:bankrabl\u00E1s\\varos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\bankrabl\u00E1s\\whisky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|solutionrelative:bankrabl\u00E1s\\whisky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\bankrabl\u00E1s\\bandita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF49F0FC-86D6-407B-9FF4-EA45B73AC8B0}|Bankrabl\u00E1s\\Bankrabl\u00E1s.csproj|solutionrelative:bankrabl\u00E1s\\bandita.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Varos.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Varos.cs",
+              "RelativeDocumentMoniker": "Bankrabl\u00E1s\\Varos.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Varos.cs",
+              "RelativeToolTip": "Bankrabl\u00E1s\\Varos.cs",
+              "ViewState": "AgIAALcAAAAAAAAAAADgv8kAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T10:00:32.176Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Sheriff.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Sheriff.cs",
+              "RelativeDocumentMoniker": "Bankrabl\u00E1s\\Sheriff.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Sheriff.cs",
+              "RelativeToolTip": "Bankrabl\u00E1s\\Sheriff.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAmwG8AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T08:00:20.89Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Bandita.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Bandita.cs",
+              "RelativeDocumentMoniker": "Bankrabl\u00E1s\\Bandita.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Bandita.cs",
+              "RelativeToolTip": "Bankrabl\u00E1s\\Bandita.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAWwBwAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T10:55:05.308Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Whisky.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Whisky.cs",
+              "RelativeDocumentMoniker": "Bankrabl\u00E1s\\Whisky.cs",
+              "ToolTip": "C:\\Users\\User\\Downloads\\Bankrabl\u00E1s\\Bankrabl\u00E1s\\Whisky.cs",
+              "RelativeToolTip": "Bankrabl\u00E1s\\Whisky.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T17:08:23.271Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

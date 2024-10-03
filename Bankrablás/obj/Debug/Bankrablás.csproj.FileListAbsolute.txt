@@ -1,0 +1,14 @@
+H:\AAF\Bankrablás\Bankrablás\bin\Debug\Bankrablás.exe.config
+H:\AAF\Bankrablás\Bankrablás\bin\Debug\Bankrablás.exe
+H:\AAF\Bankrablás\Bankrablás\bin\Debug\Bankrablás.pdb
+H:\AAF\Bankrablás\Bankrablás\obj\Debug\Bankrablás.csproj.AssemblyReference.cache
+H:\AAF\Bankrablás\Bankrablás\obj\Debug\Bankrablás.csproj.CoreCompileInputs.cache
+H:\AAF\Bankrablás\Bankrablás\obj\Debug\Bankrablás.exe
+H:\AAF\Bankrablás\Bankrablás\obj\Debug\Bankrablás.pdb
+C:\Users\User\Downloads\Bankrablás\Bankrablás\bin\Debug\Bankrablás.exe.config
+C:\Users\User\Downloads\Bankrablás\Bankrablás\bin\Debug\Bankrablás.exe
+C:\Users\User\Downloads\Bankrablás\Bankrablás\bin\Debug\Bankrablás.pdb
+C:\Users\User\Downloads\Bankrablás\Bankrablás\obj\Debug\Bankrablás.csproj.AssemblyReference.cache
+C:\Users\User\Downloads\Bankrablás\Bankrablás\obj\Debug\Bankrablás.csproj.CoreCompileInputs.cache
+C:\Users\User\Downloads\Bankrablás\Bankrablás\obj\Debug\Bankrablás.exe
+C:\Users\User\Downloads\Bankrablás\Bankrablás\obj\Debug\Bankrablás.pdb
