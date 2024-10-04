@@ -279,7 +279,7 @@ namespace Bankrablás
                     }
                 }
             if (!action)
-                sher.Default(ref varos, ref felfedezettMezok);
+                sher.SheriffKovetoLepes(ref varos, sheriffX, sheriffY, SheriffCel());
         }
 
         public static void SheriffHelyFelforditas(int x, int y)

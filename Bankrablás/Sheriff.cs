@@ -30,19 +30,6 @@ namespace Bankrablás
         #region Valtozok
         Dictionary<(int, int), List<List<bool>>> followMezok = new Dictionary<(int, int), List<List<bool>>>();
         public Fold newFold = new Fold();
-        #region SheriffLepesTombok
-
-        //közelben lévő felfedezetlen területekhez és értük teendő lépések indexei
-        (int, int)[] sheriffUjmezoCheckIranyok = new (int, int)[] { (-2, 0), (-2, -1), (-2, 1),
-                                                                    (0, -2), (-1, -2), (1, -2),
-                                                                    (2, 0), (2, -1), (2 , 1),
-                                                                    (0, 2), (1, 2), (-1 , 2)};
-        (int, int)[] sheriffLepesIranyok = new (int, int)[] { (-1,0), (-1, -1), (-1, 1),
-                                                            (0, -1), (-1, -1), (1, -1),
-                                                            (1, 0), (1, -1), (1 , 1),
-                                                            (0, 1), (1, 1), (-1 , 1)};
-
-        #endregion
         Random r = new Random();
 
         #endregion
@@ -118,28 +105,6 @@ namespace Bankrablás
             Lep(ref varos, ujsheriffX, ujsheriffY);
         }
 
-        #endregion
-
-        #region Default
-
-        internal void Default(ref VarosElem[,] varos, ref bool[,] felfedezettMezok)
-        {
-            var (sheriffX, sheriffY) = sheriffLocation;
-            for (int i = 0; i < sheriffUjmezoCheckIranyok.Count(); i++)
-            {
-                int tempX = sheriffX + sheriffUjmezoCheckIranyok[i].Item1;
-                int tempY = sheriffY + sheriffUjmezoCheckIranyok[i].Item2;
-                (int, int) ujHely = (sheriffX + sheriffLepesIranyok[i].Item1, sheriffY + sheriffLepesIranyok[i].Item2);
-                if (Varos.validmezoCheck(tempX, tempY) && Varos.validmezoCheck(ujHely.Item1, ujHely.Item2))
-                    if (!felfedezettMezok[tempX, tempY] && (varos[ujHely.Item1, ujHely.Item2] is Fold))
-                    {
-                        followMezok.Clear();
-                        Lep(ref varos, ujHely.Item1, ujHely.Item2);
-                        return;
-                    }
-            }
-            SheriffKovetoLepes(ref varos, sheriffX, sheriffY, Varos.SheriffCel());
-        }
         #endregion
 
         #region WhiskyLekezeles
