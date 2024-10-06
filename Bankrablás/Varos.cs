@@ -360,7 +360,6 @@ namespace Bankrablás
             Console.WriteLine("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");
             for (int i = 0; i < varos.GetLength(0); i++)
             {
-                Console.BackgroundColor = ConsoleColor.Black;
                 Console.Write("|");
                 for (int j = 0; j < varos.GetLength(1); j++)
                 {
@@ -370,22 +369,19 @@ namespace Bankrablás
                     //Console.Write($" {elem} ");
 
                     if (felfedezettMezok[i, j])
-                    { 
-                        Console.ForegroundColor = ConsoleColor.White;
+                    {
                         string elem = varos[i, j].ToString();
-                        Console.BackgroundColor = elemSzinek[Array.IndexOf(elemek, elem)];
+                        Console.ForegroundColor = elemSzinek[Array.IndexOf(elemek, elem)];
                         Console.Write($" {elem} ");
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.BackgroundColor = ConsoleColor.Black;
-                        Console.Write($" # ");
+                        Console.Write($" * ");
                     }
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
 
                 }
-                Console.BackgroundColor = ConsoleColor.Black;
                 Console.Write("|");
                 Console.WriteLine();
             }
